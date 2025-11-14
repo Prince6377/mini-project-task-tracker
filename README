@@ -1,0 +1,47 @@
+# ## Models Summary
+
+# ### **Project**
+# - name (unique per owner)
+# - description (optional)
+# - owner (ForeignKey to User)
+# - created_at (auto)
+# - updated_at (auto)
+
+# ### **Task**
+# - project (ForeignKey)
+# - title (required)
+# - description (optional)
+# - status (todo, in_progress, done)
+# - priority (integer 1–5)
+# - due_date (optional)
+# - assignee (optional User)
+
+# #### Validation Rules:
+# - priority must be between **1–5**
+# - if status = **done**, then due_date must **not be in the future**
+
+# ---
+
+# ## Endpoints
+
+# ### **POST /projects/**
+# Create a project for the authenticated user.
+
+# ### **GET /projects/?search=abc**
+# List user’s projects with optional search filter.
+
+# ### **POST /projects/<id>/tasks/**
+# Create a task under a project owned by the authenticated user.
+
+# ### **GET /tasks/?status=&project_id=&due_before=**
+# List tasks where:
+# - user is the **project owner**, OR  
+# - user is the **assignee**
+
+# ### **GET /dashboard/**
+# Returns:
+# - total_projects  
+# - total_tasks  
+# - tasks_by_status  
+# - top 5 upcoming tasks  
+# If there are no upcoming tasks:
